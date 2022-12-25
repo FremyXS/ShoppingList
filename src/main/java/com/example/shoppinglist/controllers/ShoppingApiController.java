@@ -24,12 +24,16 @@ public class ShoppingApiController {
         productService.save(name);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     private void delete(@PathVariable("id") Long id) {
         productService.delete(id);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     private void update(@PathVariable("id") Long id) {
         productService.update(id);
+    }
+    @GetMapping("/{id}")
+    private Product getById(@PathVariable("id") Long id) {
+        return productService.getId(id);
     }
 }
