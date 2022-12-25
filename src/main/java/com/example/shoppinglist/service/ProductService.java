@@ -12,13 +12,19 @@ public class ProductService {
     public Iterable<Product> findAllProducts() {
         return productRepository.findAll();
     }
-    public void save(String name) {
-        productRepository.save(new Product(productRepository.getCount()+1, name));
+    public Product save(String name) {
+        Product product = new Product(productRepository.getCount()+1, name);
+        productRepository.save(product);
+        return product;
     }
-    public void delete(Long id){
+    public Long delete(Long id){
         productRepository.delete(id);
+        return (long)0;
     }
     public void update(Long id){
         productRepository.update(id);
+    }
+    public Product getId(Long id){
+        return productRepository.findById(id);
     }
 }

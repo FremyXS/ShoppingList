@@ -8,9 +8,14 @@ import java.util.Map;
 
 @Repository
 public class  ProductRepository {
-    private final Map<Long, Product> products = new HashMap<>();
+    private final Map<Long, Product> products = new HashMap<>(){{
+        put((long)1, new Product((long)1, "apple"));
+    }};
     public Iterable<Product> findAll(){
         return products.values();
+    }
+    public Product findById(long id){
+        return products.get(id);
     }
     public void save(Product product){
         products.put(product.getId(), product);
